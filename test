@@ -1,0 +1,10 @@
+list = [1, 0, 5, 9]
+num = len(list)
+x = 0
+while x < num:
+    if list[x] >= 1:
+        print(list[x])
+    if list[x] < 0:
+        break
+    x = x + 1
+
