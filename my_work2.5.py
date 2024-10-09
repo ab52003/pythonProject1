@@ -2,7 +2,7 @@ def get_matrix(n, m, value): # объявление функции
     matrix = [] # пустой список
     for i in range(n): # внешний цикл
         matrix.append([]) # добавление пустого списка
-        for j in range(m): # внутренний цикл
+        for _ in range(m): # внутренний цикл
             matrix[i].append(value) # добавление value в список
     return matrix # возврат списка
 result1 = get_matrix(2, 3, 11) # 1 вариант списка
