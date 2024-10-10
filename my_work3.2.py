@@ -14,8 +14,5 @@ def send_email(message, recipient, *, sender = "university.help@gmail.com"): # �
 
 message = input("Введите сообщение: ").split() # ввод данных
 recipient = input("Введите адрес эл. почты получателя: ") # ввод данных
-# print(*message, ',', recipient)
 
 send_email(message, recipient) # вызов функции
-
-#send_email(message, recipient, sender = "university.help@gmail.com")
