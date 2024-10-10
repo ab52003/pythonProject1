@@ -1,4 +1,4 @@
-def send_email(message, recipient, sender = "university.help@gmail.com"): # объявление функции
+def send_email(message, recipient, *, sender = "university.help@gmail.com"): # объявление функции
     if "@" not in recipient or "@" not in sender: # проверка наличия символа @ в эл. адресах получателя и отправителя
         print("Невозможно отправить письмо с адреса " + sender + " на адрес " + recipient) # сообщение об ошибке
     elif recipient.endswith(".com") == False and recipient.endswith(".ru") == False and recipient.endswith(".net") == False: # проверка наличия окончаний .com, .ru, .net в эл. адресе получателя
