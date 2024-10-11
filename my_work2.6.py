@@ -1,7 +1,8 @@
 from random import random
+from operator import itemgetter, attrgetter, methodcaller
 
 #area = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20] # исходный список
-from operator import itemgetter, attrgetter, methodcaller
+
 n = int(input("Введите число от 3 до 20: ")) # ввод числа
 list = [] # создание пустого списка
 for i in range(1, n): # цикл - перебор чисел до введенного числа
@@ -20,4 +21,4 @@ while i < a: # цикл - разбивка пар чисел на отдельн
     list1.append(list[i][1]) # добавление второго числа из пары в новый список
     i = i + 1 # увеличение счетчика цикла
 print(n, '- число из первой вставки') # вывод на экран введенного числа
-print(*list1, '- нужный пароль') # вывод на экран паролей
+print(*list1, ' - нужный пароль', sep = "") # вывод на экран паролей
