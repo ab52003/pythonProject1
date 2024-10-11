@@ -18,6 +18,7 @@ def is_contains(string, list_to_search): # Функция is_contains
     res_1 = (string in list_to_search) # результат проверки наличия строки в списке
     count_calls() # вызов функции count_calls
 
+
 while calls >= 0: # цикл вызова функций
     string = input("Введите слово: ") # ввод строки
     list_to_search = input("Введите список слов: ").split() # ввод списка
