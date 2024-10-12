@@ -1,9 +1,7 @@
 def send_email(message, recipient, *, sender = "university.help@gmail.com"): # объявление функции
     if "@" not in recipient or "@" not in sender: # проверка наличия символа @ в эл. адресах получателя и отправителя
         print("Невозможно отправить письмо с адреса " + sender + " на адрес " + recipient) # сообщение об ошибке
-    elif not recipient.endswith((".com", ".ru", ".net")): # проверка наличия окончаний .com, .ru, .net в эл. адресе получателя
-        print("Невозможно отправить письмо с адреса " + sender + " на адрес " + recipient) # сообщение об ошибке
-    elif not sender.endswith((".com", ".ru", ".net")): # проверка наличия окончаний .com, .ru, .net в эл. адресе отправителя
+    elif not recipient.endswith((".com", ".ru", ".net")) or not sender.endswith((".com", ".ru", ".net")): # проверка наличия окончаний .com, .ru, .net в эл. адресе получателя и отправителя
         print("Невозможно отправить письмо с адреса " + sender + " на адрес " + recipient) # сообщение об ошибке
     elif recipient == sender: # проверка совпадения эл. адресов получателя и отправителя
         print("Нельзя отправить письмо самому себе!") # сообщение об ошибке
