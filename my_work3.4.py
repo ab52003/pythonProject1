@@ -5,7 +5,7 @@ def single_root_words(root_word, *other_word): # объявление функц
     for i in other_word: # цикл
         if root_word in i or i in root_word: # проверка нахождения слова в словах из списка
            same_words.append(i) # добавление слова в список
-    return same_words # возврат значения
+    return same_words # возврат списка
 
 
 root_word = input('Введите слово: ') # ввод слова
