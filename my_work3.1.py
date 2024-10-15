@@ -6,7 +6,7 @@ def count_calls(): # Функция count_calls
 
 def string_info(string): # Функция string_info
     count_calls() # вызов функции count_calls
-    return (len(string), string.upper(), string.lower()) # возврат значений
+    return len(string), string.upper(), string.lower() # возврат значений
 
 def is_contains(string, list_to_search): # Функция is_contains
     string = string.lower() # перевод строки в нижний регистр
@@ -17,9 +17,9 @@ def is_contains(string, list_to_search): # Функция is_contains
         if string in item: # проверка совпадений в элементах списка
             a = a + 1 # увеличение счетчика
     if a > 0: # проверка счетчика
-        return ('True') # возврат значения
+        return 'True' # возврат значения
     else: # иначе
-        return ('False') # возврат значения
+        return 'False' # возврат значения
 
 
 while calls >= 0: # цикл вызова функций
