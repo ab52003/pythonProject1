@@ -11,7 +11,7 @@ def calculate_structure_sum(data_structure):
                     result += len(j)
                 elif isinstance(j, int):
                     result += j
-                elif isinstance(j, list) or isinstance(j, set) or isinstance(j, dict) or isinstance(j, tuple):
+                elif isinstance(j, list | set | dict | tuple):
                     calculate_structure_sum(j)
         elif isinstance(i, dict):
             for j in dict.keys(i):
@@ -30,7 +30,7 @@ def calculate_structure_sum(data_structure):
                     result += len(j)
                 elif isinstance(j, int):
                     result += j
-                elif isinstance(j, set) or isinstance(j, list) or isinstance(j, dict) or isinstance(j, tuple):
+                elif isinstance(j, list | set | dict | tuple):
                     calculate_structure_sum(j)
         elif isinstance(i, tuple):
             calculate_structure_sum(i)
