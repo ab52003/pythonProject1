@@ -1,36 +1,29 @@
+def res(item):
+    global result
+    if isinstance(item, str):
+        result += len(item)
+    elif isinstance(item, int):
+        result += item
+
+
 def calculate_structure_sum(data_structure):
     global result
     for i in data_structure:
-        if isinstance(i, str):
-            result += len(i)
-        elif isinstance(i, int):
-            result += i
-        elif isinstance(i, list):
+        res(i)
+        if isinstance(i, list):
             for j in i:
-                if isinstance(j, str):
-                    result += len(j)
-                elif isinstance(j, int):
-                    result += j
-                elif isinstance(j, list | set | dict | tuple):
+                res(j)
+                if isinstance(j, list | set | dict | tuple):
                     calculate_structure_sum(j)
         elif isinstance(i, dict):
             for j in dict.keys(i):
-                if isinstance(j, str):
-                    result += len(j)
-                elif isinstance(j, int):
-                    result += j
+                res(j)
             for j in dict.values(i):
-                if isinstance(j, str):
-                    result += len(j)
-                elif isinstance(j, int):
-                    result += j
+                res(j)
         elif isinstance(i, set):
             for j in i:
-                if isinstance(j, str):
-                    result += len(j)
-                elif isinstance(j, int):
-                    result += j
-                elif isinstance(j, list | set | dict | tuple):
+                res(j)
+                if isinstance(j, list | set | dict | tuple):
                     calculate_structure_sum(j)
         elif isinstance(i, tuple):
             calculate_structure_sum(i)
