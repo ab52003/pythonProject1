@@ -5,11 +5,10 @@ class House: # создание класса House
 
 
     def go_to(self, new_floor): # создание метода go_to с параметром new_floor
-        i = 1 # счетчик
-        if new_floor < i or new_floor > self.number_of_floors: # несуществующий этаж
+        if new_floor < 1 or new_floor > self.number_of_floors: # несуществующий этаж
             print('"В', self.name, 'такого этажа не существует"') # ссообщение о несуществующем этаже
         else:
-            for i in range(1, new_floor + 1): # перебо этажей
+            for i in range(1, new_floor + 1): # перебор этажей
                 print(i) # номер очередного этажа
                 i += 1 # увеличение счетчика
 
