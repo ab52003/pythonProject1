@@ -14,7 +14,9 @@ class House: # создание класса House
 
 
     def is_in (self): # создание метода проверки на числовое значение
-        if not(isinstance(self.number_of_floors, int)): # если значение не числовое
+        if not all(ch.isdigit() for ch in str(self.number_of_floors)): # если не введено число
+            return "Число не введено" # вернуть сообщение
+        elif not(isinstance(self.number_of_floors, int)): # если значение не числовое
             return int(self.number_of_floors) # возвращает числовое значение
         else:
             return self.number_of_floors # возвращает исходное значение
@@ -86,7 +88,7 @@ class House: # создание класса House
 h1 = House('ЖК Черемушки', '6') # первый объект класса House
 print(House.houses_history) # вывод на экран списка
 
-h2 = House('ЖК Кленовая аллея', 2) # второй объект класса House
+h2 = House('ЖК Кленовая аллея', 7) # второй объект класса House
 print(House.houses_history) # вывод на экран списка
 
 h3 = House('ЖК Дубки', 8) # третий объект класса House
