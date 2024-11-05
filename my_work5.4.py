@@ -78,7 +78,7 @@ class House: # создание класса House
         return print(f'{self.name}, снесён, но он останется в истории') # возвращает вывод на экран строки
 
 
-    #def del_del (self): # создание метода del (перегрузка оператора del)
+    #def del_del (self): # создание метода del_del
         #House.houses_history.remove(self.name) # удаляет наименование объекта из списка
         #return print(f'{self.name}, снесён, но он останется в истории') # возвращает вывод на экран строки
 
@@ -116,8 +116,8 @@ a = input('Введите число: ') # ввод номера этажа
 
 h3.go_to(int(a)) # вызов метода go_to для третьего объекта
 
-del h3
-#h3.del_del () # вызов метода del
+del h3 # вызов метода del
+#h3.del_del () # вызов метода del_del
 print(House.houses_history) # вывод на экран списка
 
 print(h1 == h2) # вызов метода eq
