@@ -10,7 +10,6 @@ class House: # создание класса House
         else:
             for i in range(1, new_floor + 1): # перебор этажей
                 print(i) # номер очередного этажа
-                i += 1 # увеличение счетчика
 
 
     def __len__(self): # создание метода len
