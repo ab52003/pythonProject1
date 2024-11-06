@@ -69,6 +69,7 @@ class House: # создание класса House
         #House.houses_history.remove(self.name) # удаляет наименование объекта из списка
         #return print(f'{self.name}, снесён, но он останется в истории') # возвращает вывод на экран строки
 
+
     def is_in (self, args): # создание метода проверки на числовое значение
         if not all(ch.isdigit() for ch in str(args)): # если не введено число
             return print("Число не введено") # вернуть сообщение
