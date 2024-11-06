@@ -27,7 +27,7 @@ class House: # создание класса House
         elif not(isinstance(other, House)): # если объект не типа House
             return "Это не  объект типа House" # вернуть сообщение
         else:
-            return self.number_of_floors < other.number_of_floors # возвращает срвнение кол-ва этажей здания
+            return self.number_of_floors < other.number_of_floors # возвращает сравнение кол-ва этажей здания
 
 
     def __le__(self, other): # создание метода le (перегрузка оператора <=)
@@ -36,7 +36,7 @@ class House: # создание класса House
         elif not (isinstance(other, House)):  # если объект не типа House
             return "Это не  объект типа House"  # вернуть сообщение
         else:
-            return self.number_of_floors <= other.number_of_floors # возвращает срвнение кол-ва этажей здания
+            return self.number_of_floors <= other.number_of_floors # возвращает сравнение кол-ва этажей здания
 
 
     def __gt__(self, other): # создание метода gt (перегрузка оператора >)
@@ -45,7 +45,7 @@ class House: # создание класса House
         elif not (isinstance(other, House)):  # если объект не типа House
             return "Это не  объект типа House"  # вернуть сообщение
         else:
-            return self.number_of_floors > other.number_of_floors # возвращает срвнение кол-ва этажей здания
+            return self.number_of_floors > other.number_of_floors # возвращает сравнение кол-ва этажей здания
 
 
     def __ge__(self, other): # создание метода ge (перегрузка оператора >=)
@@ -54,7 +54,7 @@ class House: # создание класса House
         elif not (isinstance(other, House)):  # если объект не типа House
             return "Это не  объект типа House"  # вернуть сообщение
         else:
-            return self.number_of_floors >= other.number_of_floors # возвращает срвнение кол-ва этажей здания
+            return self.number_of_floors >= other.number_of_floors # возвращает сравнение кол-ва этажей здания
 
 
     def __ne__(self, other): # создание метода ne (перегрузка оператора !=)
@@ -63,7 +63,7 @@ class House: # создание класса House
         elif not (isinstance(other, House)):  # если объект не типа House
             return "Это не  объект типа House"  # вернуть сообщение
         else:
-            return self.number_of_floors != other.number_of_floors # возвращает срвнение кол-ва этажей здания
+            return self.number_of_floors != other.number_of_floors # возвращает сравнение кол-ва этажей здания
 
 
     def __add__(self, value): # создание метода add (перегрузка оператора +)
@@ -92,7 +92,7 @@ class House: # создание класса House
 
     def go_to(self, new_floor): # создание метода go_to с параметром new_floor
         if new_floor < 1 or new_floor > self.number_of_floors: # несуществующий этаж
-            print('"В', self.name, 'такого этажа не существует"') # ссообщение о несуществующем этаже
+            print('"В', self.name, 'такого этажа не существует"') # сообщение о несуществующем этаже
         else:
             for i in range(1, new_floor + 1): # перебор этажей
                 print(i) # номер очередного этажа
