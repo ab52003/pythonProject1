@@ -72,11 +72,10 @@ class House: # создание класса House
 
     def is_in (self, args): # создание метода проверки на числовое значение
         if not all(ch.isdigit() for ch in str(args)): # если не введено число
-            return print("Число не введено") # вернуть сообщение
-        elif not(isinstance(args, int)): # если значение не числовое
-            return int(args) # возвращает числовое значение
+            print("Число не введено") # вывод сообщения
+            exit()
         else:
-            return args # возвращает исходное значение
+            return int(args) # возвращает исходное значение
 
 
     def go_to(self, new_floor): # создание метода go_to с параметром new_floor
