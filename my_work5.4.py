@@ -65,15 +65,16 @@ class House: # создание класса House
         return print(f'{self.name}, снесён, но он останется в истории') # возвращает вывод на экран строки
 
 
-    #def del_del (self): # создание метода del_del
+    #def del_del(self): # создание метода del_del
         #House.houses_history.remove(self.name) # удаляет наименование объекта из списка
         #return print(f'{self.name}, снесён, но он останется в истории') # возвращает вывод на экран строки
 
 
-    def is_in (self, args): # создание метода проверки на числовое значение
-        if not all(ch.isdigit() for ch in str(args)): # если не введено число
+    def is_in(self, args): # создание метода проверки на числовое значение
+        if not all(ch.isdigit() for ch in str(args)) or args == '': # если не введено число
             print("Число не введено") # вывод сообщения
-            exit() # выход из программы
+            self.is_in(input('Введите число: '))
+            #exit() # выход из программы
         else:
             return int(args) # возвращает исходное значение
 
