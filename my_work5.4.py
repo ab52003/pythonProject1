@@ -73,7 +73,7 @@ class House: # создание класса House
     def is_in (self, args): # создание метода проверки на числовое значение
         if not all(ch.isdigit() for ch in str(args)): # если не введено число
             print("Число не введено") # вывод сообщения
-            exit()
+            exit() # выход из программы
         else:
             return int(args) # возвращает исходное значение
 
