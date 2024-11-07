@@ -70,12 +70,24 @@ class House: # создание класса House
         #return print(f'{self.name}, снесён, но он останется в истории') # возвращает вывод на экран строки
 
 
+    #def is_in(self, args): # создание метода проверки на числовое значение
+        #if not all(ch.isdigit() for ch in str(args)) or args == '': # если не введено число
+            #print("Число не введено") # вывод сообщения
+            #return self.is_in(input('Введите число: ')) # рекурсия
+        #else:
+            #return int(args) # возвращает исходное значение
+
+
     def is_in(self, args): # создание метода проверки на числовое значение
-        if not all(ch.isdigit() for ch in str(args)) or args == '': # если не введено число
-            print("Число не введено") # вывод сообщения
-            self.is_in(input('Введите число: ')) # рекурсия
+        # Если аргумент уже является целым числом, сразу возвращаем его
+        if isinstance(args, int):
+            return args
+        # Если аргумент строка, проверяем, можно ли его преобразовать в число
+        elif isinstance(args, str) and args.isdigit():
+            return int(args)
         else:
-            return int(args) # возвращает исходное значение
+            print("Число не введено")
+            return self.is_in(input('Введите число: '))  # рекурсивный вызов с новым вводом
 
 
     def go_to(self, new_floor): # создание метода go_to с параметром new_floor
