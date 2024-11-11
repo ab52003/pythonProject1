@@ -6,6 +6,9 @@ class User:
     """
     Класс пользователя, содержащий атрибуты: логин, пароль, возраст.
     """
+
+    age = 0
+
     def __init__(self, nickname, password, age):
         self.nickname = nickname
         self.password = password
@@ -16,10 +19,14 @@ class Video:
     """
     Класс видео, содержащий атрибуты: заголовок, продолжительность, секунда остановки, ограничение по возрасту.
     """
+    adult_mode = False
+    time_now = 0
+    duration = 0
+
     def __init__(self, title, duration, time_now, adult_mode):
         self.title = title
         self.duration = duration
-        self.time_now = 0
+        self.time_now = time_now
         self.adult_mode = adult_mode
 
 
@@ -27,6 +34,8 @@ class UrTube:
     """
     Класс платформа, содержащий атрибуты: список объектов User, список объектов Video, текущий пользователь, User.
     """
+    flag = False
+
     def __init__(self, users, videos, videos_title, current_user):
         self.users = []
         self.videos = []
@@ -42,7 +51,9 @@ class UrTube:
            return f'Пользователь {nickname} уже существует'
         else:
             self.users.extend([nickname, password, age])
-            return self.users
+            User.age = age
+            UrTube.flag = True
+            return self.users, UrTube.flag, User.age
 
 
     def log_in(self, nickname, password):
@@ -52,7 +63,8 @@ class UrTube:
             password_1 = self.users[self.users.index(nickname) + 1]
             if password == password_1:
                 current_user = nickname
-                return current_user
+                UrTube.flag = True
+                return current_user, UrTube.flag
             else:
                 return f'Неверный пароль'
         else:
@@ -60,19 +72,19 @@ class UrTube:
 
 
     def log_out(self):
-        return None
+        UrTube.flag = False
+        return UrTube.flag
 
 
     def add(self, video):
-        title = video.title
-        duration = video.duration
-        adult_mode = video.adult_mode
-        if title in self.videos:
+        if video.title in self.videos:
            return f'Такое видео уже есть'
         else:
-            self.videos.extend([title, duration, adult_mode])
-            self.videos_title.extend([title])
-            return self.videos, self.videos_title
+            self.videos.extend([video.title, video.duration, video.adult_mode])
+            self.videos_title.extend([video.title])
+            Video.adult_mode = video.adult_mode
+            Video.duration = video.duration
+            return self.videos, self.videos_title, Video.adult_mode, Video.duration
 
 
     def get_videos(self, word):
@@ -89,9 +101,18 @@ class UrTube:
         if word not in self.videos_title:
             pass
         else:
-            for i in self.users:
-                if current_user not in i:
-                    return f'Войдите в аккаунт, чтобы смотреть видео'
+            if not UrTube.flag:
+                return f'Войдите в аккаунт, чтобы смотреть видео'
+            else:
+                if Video.adult_mode and User.age < 18:
+                    return f'Вам нет 18 лет, пожалуйста покиньте страницу'
+                else:
+                    list_1 = []
+                    while Video.time_now < Video.duration:
+                        Video.time_now +=1
+                        list_1.append(Video.time_now)
+                    Video.time_now = 0
+                    return list_1, 'Конец видео', Video.time_now
 
 
 
