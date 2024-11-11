@@ -125,20 +125,20 @@ current_user = UrTube([], [], [], current_user = ('', ''))
 
 print(current_user.register('', '', ''))
 
-#print(current_user.register('', '', ''))
+print(current_user.register('', '', ''))
 
 print(current_user.log_in('', ''))
 
-#print(current_user.log_in('',''))
+print(current_user.log_in('',''))
 
-#print(current_user.log_out())
+print(current_user.log_out())
 
 print(current_user.add(video_1))
 
 print(current_user.add(video_2))
 
-#print(current_user.add(video_1))
+print(current_user.add(video_1))
 
-#print(current_user.get_videos(word))
+print(current_user.get_videos(word))
 
 print(current_user.watch_video(word))
