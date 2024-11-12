@@ -37,7 +37,6 @@ class Flower(Plant):
 
 class Fruit(Plant):
     edible = True
-    pass
 
 
 a1 = Predator('Волк')
