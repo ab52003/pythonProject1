@@ -60,7 +60,7 @@ class PoisonousAnimal(Animal):
     _DEGREE_OF_DANGER = 8
 
 
-class Duckbill(Bird, AquaticAnimal, PoisonousAnimal):
+class Duckbill(Bird, PoisonousAnimal, AquaticAnimal):
         sound = "Click-click-click"
 
 
@@ -70,7 +70,7 @@ print(db.live)
 print(db.beak)
 
 db.speak(db.sound)
-db.attack(7)
+db.attack(5)
 
 db.move(1, 2, 3)
 db.get_cords(db._cords)
