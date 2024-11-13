@@ -88,7 +88,7 @@ class UrTube:
                 return f'Войдите в аккаунт, чтобы смотреть видео'
             else:
                 if self.adult_mode and self.age < 18:
-                    return f'Вам нет 18 лет, пожалуйста покиньте страницу'
+                    return f'Вам нет 18 лет, пожалуйста, покиньте страницу'
                 else:
                     list_1 = []
                     time_now = 0
