@@ -18,7 +18,7 @@ class Video:
         self.title = title
         self.duration = duration
         self.time_now = 0
-        self.adult_mode = False
+        self.adult_mode = adult_mode
 
 
 class UrTube:
@@ -29,7 +29,6 @@ class UrTube:
     def __init__(self):
         self.users = []
         self.videos = []
-        #self.videos_title = []
         self.current_user = None
 
 
@@ -62,8 +61,10 @@ class UrTube:
                     else:
                         a = 1
                         print(f'Неверный пароль')
+                        self.current_user = None
         if a == 0:
             print(f'Пользователь не найден')
+            self.current_user = None
 
 
     def log_out(self):
@@ -71,50 +72,57 @@ class UrTube:
 
 
     def add(self, title, duration, time_now, adult_mode):
+        a = 0
         if len(self.videos) == 0:
             self.video = Video(title, duration, time_now, adult_mode)
             self.videos.extend([self.video])
         else:
             for i in range(len(self.videos)):
                 if title == self.videos[i].title:
-                    return f'Такое видео уже есть'
-            self.video = Video(title, duration, time_now, adult_mode)
-            self.videos.extend([self.video])
-            self.videos_duration = self.videos[i].duration
+                    print(f'Такое видео уже есть')
+                    a = 1
+            if a == 0:
+                self.video = Video(title, duration, time_now, adult_mode)
+                self.videos.extend([self.video])
 
 
     def get_videos(self, word):
         word = word.lower()
+        list = []
         if len(self.videos) == 0:
-            return f'Такого видео нет'
+            print(f'Такого видео нет')
         else:
-            i = 0
-            list = []
             for i in range(len(self.videos)):
-                if word not in self.videos[i].title.lower() or self.videos[i].title.lower() not in word:  # проверка нахождения слова в словах из списка
-                    return f'Такого видео нет'
-                else:
-                    list.append(self.videos[i].title)  # добавление слова в список
-                    return list  # возврат списка
+                if word in self.videos[i].title.lower() or self.videos[i].title.lower() in word:
+                    list.append(self.videos[i].title)
+                    print(list)
+        if len(list) == 0:
+            print(f'Такого видео нет')
 
 
     def watch_video(self, word):
-        if word not in self.videos_title:
-            pass
+        list = []
+        for i in range(len(self.videos)):
+            if word in self.videos[i].title:
+                list.append(self.videos[i])
+                self.video_adult_mode = self.videos[i].adult_mode
+                self.video_duration = self.videos[i].duration
+        if len(list) == 0:
+            print(f'Такого видео нет')
         else:
             if self.current_user is None:
-                return f'Войдите в аккаунт, чтобы смотреть видео'
+                print(f'Войдите в аккаунт, чтобы смотреть видео')
             else:
-                if self.adult_mode and self.age < 18:
-                    return f'Вам нет 18 лет, пожалуйста, покиньте страницу'
+                if self.video_adult_mode and self.current_user_age < 18:
+                    print(f'Вам нет 18 лет, пожалуйста, покиньте страницу')
                 else:
                     list_1 = []
                     time_now = 0
-                    while time_now < self.duration:
+                    while time_now < self.video_duration:
                         time_now +=1
                         list_1.append(time_now)
                     self.time_now = 0
-                    return list_1, 'Конец видео', self.time_now
+                    print(' '.join(map(str, list_1)), f'Конец видео')
 
 
 
@@ -130,24 +138,16 @@ current_user.register('Max', 123, 18)
 
 current_user.register('Max', 123, 18)
 
-#current_user.register('Den', 123, 15)
+current_user.log_in('Max',123)
 
-#print(current_user.register('', '', ''))
+#current_user.log_out()
 
-#print(current_user.log_in('Den', 123))
+current_user.add('Bodyguard', 20, 0, False)
 
-current_user.log_in('Den',123)
+current_user.add('Tutsy', 10, 0, True)
 
-#print(current_user.log_out())
+current_user.add('Tutsy', 10, 0, True)
 
-print(current_user.add('Bodyguard', 20, 0, False))
+current_user.get_videos('tut')
 
-print(current_user.add('Tutsy', 10, 0, True))
-
-print(current_user.add('Tutsy', 10, 0, True))
-
-#print(current_user.add(video_1))
-
-print(current_user.get_videos('tut'))
-
-#print(current_user.watch_video('Tutsy'))
+current_user.watch_video('Tutsy')
