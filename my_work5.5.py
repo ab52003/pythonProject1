@@ -26,58 +26,76 @@ class UrTube:
     Класс платформа, содержащий атрибуты: список объектов User, список объектов Video, текущий пользователь, User.
     """
 
-    def __init__(self, users, videos, videos_title, current_user):
+    def __init__(self):
         self.users = []
         self.videos = []
-        self.videos_title = []
-        self.current_user = current_user
+        #self.videos_title = []
+        self.current_user = None
 
 
     def register(self, nickname, password, age):
-        if nickname in self.users:
-           return f'Пользователь {nickname} уже существует'
+        if len(self.users) == 0:
+            password = hash(password)
+            self.current_user = User(nickname, password, age)
+            self.users.extend([self.current_user])
         else:
-            self.users.extend([nickname, password, age])
-            self.age = age
-            return self.users, self.age
+            for i in range(len(self.users)):
+                if nickname == self.users[i].nickname:
+                    print(f'Пользователь {nickname} уже существует')
+            password = hash(password)
+            self.current_user = User(nickname, password, age)
+            self.users.extend([self.current_user])
 
 
-    def log_in(self, nickname, password,):
-        if nickname in self.users:
-            password_1 = self.users[self.users.index(nickname) + 1]
-            if password == password_1:
-                self.current_user = nickname
-                return self.current_user
-            else:
-                return f'Неверный пароль'
+    def log_in(self, nickname, password):
+        a = 0
+        if len(self.users) == 0:
+            print(f'Зарегистрируйтесь, пожалуйста')
         else:
-            return f'Пользователь не найден'
+            for i in range(len(self.users)):
+                if nickname == self.users[i].nickname:
+                    password = hash(password)
+                    if password == self.users[i].password:
+                        self.current_user = nickname
+                        self.current_user_age = self.users[i].age
+                        a = 1
+                    else:
+                        a = 1
+                        print(f'Неверный пароль')
+        if a == 0:
+            print(f'Пользователь не найден')
 
 
     def log_out(self):
         self.current_user = None
-        return self.current_user
 
 
-    def add(self, video):
-        if video.title in self.videos:
-           return f'Такое видео уже есть'
+    def add(self, title, duration, time_now, adult_mode):
+        if len(self.videos) == 0:
+            self.video = Video(title, duration, time_now, adult_mode)
+            self.videos.extend([self.video])
         else:
-            self.videos.extend([video.title, video.duration, video.adult_mode])
-            self.videos_title.extend([video.title])
-            self.adult_mode = video.adult_mode
-            self.duration = video.duration
-            return self.videos, self.videos_title, self.adult_mode, self.duration
+            for i in range(len(self.videos)):
+                if title == self.videos[i].title:
+                    return f'Такое видео уже есть'
+            self.video = Video(title, duration, time_now, adult_mode)
+            self.videos.extend([self.video])
+            self.videos_duration = self.videos[i].duration
 
 
     def get_videos(self, word):
         word = word.lower()
-        vid = [x.lower() for x in self.videos_title]
-        list = []
-        for i in vid:  # цикл
-            if word in i or i in word:  # проверка нахождения слова в словах из списка
-                list.append(i)  # добавление слова в список
-        return list  # возврат списка
+        if len(self.videos) == 0:
+            return f'Такого видео нет'
+        else:
+            i = 0
+            list = []
+            for i in range(len(self.videos)):
+                if word not in self.videos[i].title.lower() or self.videos[i].title.lower() not in word:  # проверка нахождения слова в словах из списка
+                    return f'Такого видео нет'
+                else:
+                    list.append(self.videos[i].title)  # добавление слова в список
+                    return list  # возврат списка
 
 
     def watch_video(self, word):
@@ -100,30 +118,36 @@ class UrTube:
 
 
 
-user_1 = User('Den', 123, 15)
-user_2 = User('Max', 222, 22)
-video_1 = Video('Bodyguard', 20, 0, False)
-video_2 = Video('Tutsy', 10, 0, True)
+current_user = UrTube()
 
+current_user.register('Den', 123, 15)
 
-current_user = UrTube([], [], [], current_user = None)
+current_user.register('Den', 123, 15)
 
-print(current_user.register('Den', 123, 15))
+current_user.register('Bob', 123, 22)
+
+current_user.register('Max', 123, 18)
+
+current_user.register('Max', 123, 18)
+
+#current_user.register('Den', 123, 15)
 
 #print(current_user.register('', '', ''))
 
-print(current_user.log_in('Den', 123))
+#print(current_user.log_in('Den', 123))
 
-#print(current_user.log_in('',''))
+current_user.log_in('Den',123)
 
 #print(current_user.log_out())
 
-print(current_user.add(video_1))
+print(current_user.add('Bodyguard', 20, 0, False))
 
-print(current_user.add(video_2))
+print(current_user.add('Tutsy', 10, 0, True))
+
+print(current_user.add('Tutsy', 10, 0, True))
 
 #print(current_user.add(video_1))
 
-#print(current_user.get_videos(word))
+print(current_user.get_videos('tut'))
 
-print(current_user.watch_video('Tutsy'))
+#print(current_user.watch_video('Tutsy'))
