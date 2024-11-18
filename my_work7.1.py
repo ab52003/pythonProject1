@@ -45,6 +45,7 @@ p2 = Product('Spaghetti', 3.4, 'Groceries')
 p3 = Product('Potato', 5.5, 'Vegetables')
 
 print(p2)
+s1.__str__()
 
 s1.add(p3)
 s1.get_products()
