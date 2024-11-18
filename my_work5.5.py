@@ -14,10 +14,10 @@ class Video:
     Класс видео, содержащий атрибуты: заголовок, продолжительность, секунда остановки, ограничение по возрасту.
     """
 
-    def __init__(self, title, duration, time_now, adult_mode):
+    def __init__(self, title, duration, time_now = 0, adult_mode = False):
         self.title = title
         self.duration = duration
-        self.time_now = 0
+        self.time_now = time_now
         self.adult_mode = adult_mode
 
 
@@ -138,7 +138,7 @@ current_user.register('Max', 123, 18)
 
 current_user.register('Max', 123, 18)
 
-current_user.log_in('Max',123)
+current_user.log_in('Den',123)
 
 #current_user.log_out()
 
