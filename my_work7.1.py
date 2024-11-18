@@ -18,6 +18,7 @@ class Shop():
     def get_products(self):
         file = open('products.txt', 'r')
         list_1 = file.read()
+        file.seek(0)
         pprint(file.read())
         file.close()
         return list_1
@@ -31,9 +32,14 @@ class Shop():
                 print(f'Продукт {products[i].name + ', ' + str(products[i].weight) + ', ' + products[i].category} уже есть в магазине')
             else:
                 file = open('products.txt', 'a')
-                str_1 = products[i].name + str(products[i].weight) + products[i].category
-                file.write(str_1)
+                str_1 = f'{products[i].name + ', ' + str(products[i].weight) + ', ' + products[i].category} + ', ' + \n'
+                file.write(str_1 + '\n')
                 file.close()
+
+
+    def clear(self):
+        with open('products.txt', 'w'):
+            pass
 
 
 s1 = Shop()
@@ -44,10 +50,10 @@ p2 = Product('Spaghetti', 3.4, 'Groceries')
 
 p3 = Product('Potato', 5.5, 'Vegetables')
 
-print(p2)
 print(p1._str_())
-
 s1.add(p3)
 s1.get_products()
 s1.add(p1, p2, p3)
+s1.get_products()
+s1.clear()
 s1.get_products()
