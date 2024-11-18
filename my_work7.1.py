@@ -32,8 +32,8 @@ class Shop():
                 print(f'Продукт {products[i].name + ', ' + str(products[i].weight) + ', ' + products[i].category} уже есть в магазине')
             else:
                 file = open('products.txt', 'a')
-                str_1 = f'{products[i].name + ', ' + str(products[i].weight) + ', ' + products[i].category} + ', ' + \n'
-                file.write(str_1 + '\n')
+                str_1 = f'{products[i].name + ', ' + str(products[i].weight) + ', ' + products[i].category + ' '}'
+                file.write(str_1)
                 file.close()
 
 
