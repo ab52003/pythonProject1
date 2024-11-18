@@ -7,7 +7,7 @@ class Product:
         self.category = category
 
 
-    def __str__(self):
+    def _str_(self):
         return f'{self.name}, {self.weight}, {self.category}'
 
 
@@ -45,7 +45,7 @@ p2 = Product('Spaghetti', 3.4, 'Groceries')
 p3 = Product('Potato', 5.5, 'Vegetables')
 
 print(p2)
-s1.__str__()
+print(p1._str_())
 
 s1.add(p3)
 s1.get_products()
