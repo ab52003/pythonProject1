@@ -29,7 +29,7 @@ class Shop():
         i = 0
         for i in range(len(products)):
             if products[i].name in list_1:
-                print(f'Продукт {products[i].name + ', ' + str(products[i].weight) + ', ' + products[i].category} уже есть в магазине')
+                pprint(f'Продукт {products[i].name + ', ' + str(products[i].weight) + ', ' + products[i].category} уже есть в магазине')
             else:
                 file = open('products.txt', 'a')
                 str_1 = f'{products[i].name + ', ' + str(products[i].weight) + ', ' + products[i].category + ' '}'
