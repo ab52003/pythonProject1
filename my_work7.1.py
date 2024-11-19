@@ -32,7 +32,7 @@ class Shop():
                 pprint(f'Продукт {products[i].name + ', ' + str(products[i].weight) + ', ' + products[i].category} уже есть в магазине')
             else:
                 file = open('products.txt', 'a')
-                str_1 = f'{products[i].name + ', ' + str(products[i].weight) + ', ' + products[i].category + ' '}'
+                str_1 = f'{products[i].name + ', ' + str(products[i].weight) + ', ' + products[i].category}\n'
                 file.write(str_1)
                 file.close()
 
@@ -50,7 +50,7 @@ p2 = Product('Spaghetti', 3.4, 'Groceries')
 
 p3 = Product('Potato', 5.5, 'Vegetables')
 
-print(p1._str_())
+pprint(p1._str_())
 s1.add(p3)
 s1.get_products()
 s1.add(p1, p2, p3)
