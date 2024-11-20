@@ -1,8 +1,8 @@
 class Figure:
     sides_count = 0
-    def __init__(self, _sides,  _color, filled):
-        self._sides = _sides
-        self._color = _color
+    def __init__(self, __sides,  __color, filled = False):
+        self._sides = __sides
+        self._color = __color
         self.filled = filled
 
 
@@ -11,14 +11,14 @@ class Figure:
 
 
     def _is_valid_color(self):
-        if self._color[0] and self._color[1] and self._color[2] in range(0, 255):
+        if self._color[0] in range(0, 255) and self._color[1] in range(0, 255) and self._color[2] in range(0, 255):
             return True
         else:
             return False
 
 
     def set_color(self, r, g, b):
-        if r and g and b in range(0, 255):
+        if self._is_valid_color():
             self._color = (r, g, b)
             return self._color
         else:
@@ -33,7 +33,7 @@ class Figure:
                 else:
                     return False
         else:
-            if isinstance(self._sides, int) and self._sides > 0 and self._sides == self.sides_count:
+            if isinstance(self._sides, tuple) and self._sides > 0 and self._sides == self.sides_count:
                 return True
             else:
                 return False
@@ -86,8 +86,8 @@ class Figure:
 class Circle(Figure):
     sides_count = 1
 
-    def __init__(self, _sides, _color, filled):
-        super().__init__(_sides, _color, filled)
+    def __init__(self, __sides, __color, filled):
+        super().__init__(__sides, __color, filled)
 
         self._radius = round(self._sides / (2 * 3.14), 2)
 
@@ -100,8 +100,8 @@ class Circle(Figure):
 class Triangle(Figure):
     sides_count = 3
 
-    def __init__(self, _sides, _color, filled):
-        super().__init__(_sides, _color, filled)
+    def __init__(self, __sides, __color, filled):
+        super().__init__(__sides, __color, filled)
 
 
     def get_square(self):
@@ -116,8 +116,8 @@ class Triangle(Figure):
 class Cube(Figure):
     sides_count = 12
 
-    def __init__(self, _sides, _color, filled):
-        super().__init__(_sides, _color, filled)
+    def __init__(self, __sides, __color, filled):
+        super().__init__(__sides, __color, filled)
 
 
     def get_volume(self):
