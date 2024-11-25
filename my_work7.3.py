@@ -34,6 +34,7 @@ class WordsFinder:
     def find(self, word):
         a = self.get_all_words()
         f = {}
+        word = (str(word).lower())
         for name, words in a.items():
             if word in words:
                 f[name] = words.index(word)
@@ -43,17 +44,28 @@ class WordsFinder:
     def count(self, word):
         a = self.get_all_words()
         f = {}
+        word = (str(word).lower())
         for name, words in a.items():
             if word in words:
                 f[name] = words.count(word)
         return f
 
-w = WordsFinder('text_1.txt', 'text_2.txt', 'text_3.txt')
+#w = WordsFinder('text_1.txt', 'text_2.txt', 'text_3.txt')
+
+#print(w.get_all_words())
+
+#print(w.get_file_names())
+
+#print(w.find('с'))
+
+#print(w.count('с'))
+
+w = WordsFinder('test.txt')
 
 print(w.get_all_words())
 
 print(w.get_file_names())
 
-print(w.find('с'))
+print(w.find('TEXT'))
 
-print(w.count('с'))
+print(w.count('teXT'))
