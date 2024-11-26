@@ -47,15 +47,15 @@ class WordsFinder:
                 f[name] = words.count(word)
         return f
 
-w = WordsFinder('text_1.txt', 'text_2.txt', 'text_3.txt')
+#w = WordsFinder('text_1.txt', 'text_2.txt', 'text_3.txt')
 
-print(w.get_all_words())
+#print(w.get_all_words())
 
-print(w.get_file_names())
+#print(w.get_file_names())
 
-print(w.find('с'))
+#print(w.find('с'))
 
-print(w.count('с'))
+#print(w.count('с'))
 
 w = WordsFinder('test.txt')
 
