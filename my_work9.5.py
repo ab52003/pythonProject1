@@ -11,9 +11,9 @@ class Iterator():
         self.stop = stop
         self.step = step
         self.pointer = start
-        if (self.stop > 0 and self.step > 0) or (self.stop < 0 and self.step > 0):
+        if self.step > 0:
             self.stop +=1
-        elif (self.stop > 0 and self.step < 0) or (self.stop < 0 and self.step < 0):
+        elif self.step < 0:
             self.stop -=1
         if self.step == 0:
             raise StepValueError('шаг не может быть равен 0')
