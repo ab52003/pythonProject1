@@ -9,7 +9,6 @@ class Bank(threading.Thread):
         threading.Thread.__init__(self)
         self.balance = balance
 
-
     def deposit (self):
         lock.acquire()
         for i in range(100):
@@ -19,7 +18,6 @@ class Bank(threading.Thread):
             print(f'Пополнение: {rand}. Баланс: {self.balance}\n')
             if self.balance >= 500 and lock.locked():
                 lock.release()
-
 
     def take (self):
         try:
