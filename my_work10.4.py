@@ -28,8 +28,8 @@ class Cafe:
             for guest in guests:
                 if table.guest is None and guest.name not in cafe:
                     table.guest = guest.name
-                    ges = Guest('guest.name')
-                    ges.start()
+                    ges_guest = Guest('guest.name')
+                    ges_guest.start()
                     cafe.append(guest.name)
                     print(f'{guest.name} сел(-а) за стол номер {table.table}\n')
                 else:
@@ -39,7 +39,7 @@ class Cafe:
     def discuss_guests(self):
         while not queue.Empty():
             for table in tables:
-                if table.guest is not None:
+                if not table.guest is None:
                     if not threading.current_thread().is_alive():
                         print(f'{table.guest} покушал(-а) и ушёл(ушла)\n')
                         print(f'Стол номер {table.table} свободен\n')
