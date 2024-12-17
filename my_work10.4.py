@@ -24,7 +24,7 @@ class Cafe:
 
     def guest_arrival(self, *guests):
         cafe = []
-        for table in tables:
+        for table in self.tables:
             for guest in guests:
                 if table.guest is None and guest.name not in cafe:
                     table.guest = guest.name
@@ -37,10 +37,10 @@ class Cafe:
                     Cafe.queue.put(guest.name)
 
     def discuss_guests(self):
-        while not queue.Empty():
-            for table in tables:
+        while not Cafe.queue.empty():
+            for table in self.tables:
                 if not table.guest is None:
-                    if not threading.current_thread().is_alive():
+                    if not table.guest.is_alive():
                         print(f'{table.guest} покушал(-а) и ушёл(ушла)\n')
                         print(f'Стол номер {table.table} свободен\n')
                         table.guest = None
