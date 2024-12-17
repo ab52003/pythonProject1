@@ -28,7 +28,7 @@ class Cafe:
             for guest in guests:
                 if table.guest is None and guest.name not in cafe:
                     table.guest = guest.name
-                    ges_guest = Guest('guest.name')
+                    ges_guest = Guest(Guest.name)
                     ges_guest.start()
                     cafe.append(guest.name)
                     print(f'{guest.name} сел(-а) за стол номер {table.table}\n')
@@ -40,7 +40,7 @@ class Cafe:
         while not Cafe.queue.empty():
             for table in self.tables:
                 if not table.guest is None:
-                    if not table.guest.is_alive():
+                    if not Guest(Guest.name).is_alive():
                         print(f'{table.guest} покушал(-а) и ушёл(ушла)\n')
                         print(f'Стол номер {table.table} свободен\n')
                         table.guest = None
