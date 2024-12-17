@@ -23,13 +23,14 @@ class Cafe:
         self.tables = tables
 
     def guest_arrival(self, *guests):
+        cafe = []
         for table in tables:
             for guest in guests:
-                if table.guest is None:
+                if table.guest is None and guest.name not in cafe:
                     table.guest = guest.name
                     ges = Guest('guest.name')
                     ges.start()
-                    ges_id = threading.get_native_id()
+                    cafe.append(guest.name)
                     print(f'{guest.name} сел(-а) за стол номер {table.table}\n')
                 else:
                     print(f'{guest.name} в очереди\n')
@@ -45,10 +46,6 @@ class Cafe:
                         table.guest = None
                         table.guest = Cafe.queue.get()
                         print(f'{table.guest} вышел(-ла) из очереди и сел(-а) за стол номер {table.table}\n')
-                    else:
-                        pass
-                else:
-                    pass
 
 
 tables = [Table(number) for number in range(1, 6)]
