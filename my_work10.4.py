@@ -15,26 +15,34 @@ class Guest(threading.Thread):
 
     def run(self):
         for i in range(3,10):
-         time.sleep(i)
+            time.sleep(i)
 
 class Cafe:
     queue = Queue()
     def __init__(self, *tables):
         self.tables = tables
 
+
     def guest_arrival(self, *guests):
         cafe = []
+        tab = []
         for table in self.tables:
             for guest in guests:
-                if table.guest is None and guest.name not in cafe:
+                if table.guest is None and guest.name not in tab:
                     table.guest = guest.name
+                    tab.append(guest.name)
                     ges_guest = Guest(Guest.name)
                     ges_guest.start()
-                    cafe.append(guest.name)
                     print(f'{guest.name} сел(-а) за стол номер {table.table}\n')
+                    if guest.name in cafe:
+                        table.guest = Cafe.queue.get()
+                elif guest.name in cafe or guest.name in tab:
+                    pass
                 else:
-                    print(f'{guest.name} в очереди\n')
                     Cafe.queue.put(guest.name)
+                    cafe.append(guest.name)
+                    print(f'{guest.name} в очереди\n')
+
 
     def discuss_guests(self):
         while not Cafe.queue.empty():
