@@ -1,12 +1,12 @@
-import queue
 from queue import Queue
+from queue import Empty
 import threading
 import time
 
 class Table:
-    def __init__(self, table, guest = None):
-        self.table = table
-        self.guest = guest
+    guest = None
+    def __init__(self, number):
+        self.number = number
 
 class Guest(threading.Thread):
     def __init__(self, name):
@@ -33,7 +33,7 @@ class Cafe:
                     tab.append(guest.name)
                     ges_guest = Guest(Guest.name)
                     ges_guest.start()
-                    print(f'{guest.name} сел(-а) за стол номер {table.table}\n')
+                    print(f'{guest.name} сел(-а) за стол номер {table.number}\n')
                     if guest.name in cafe:
                         table.guest = Cafe.queue.get()
                 elif guest.name in cafe or guest.name in tab:
@@ -50,10 +50,14 @@ class Cafe:
                 if not table.guest is None:
                     if not Guest(Guest.name).is_alive():
                         print(f'{table.guest} покушал(-а) и ушёл(ушла)\n')
-                        print(f'Стол номер {table.table} свободен\n')
+                        print(f'Стол номер {table.number} свободен\n')
                         table.guest = None
-                        table.guest = Cafe.queue.get()
-                        print(f'{table.guest} вышел(-ла) из очереди и сел(-а) за стол номер {table.table}\n')
+                        try:
+                            table.guest = Cafe.queue.get(timeout=10)
+                            print(f'{table.guest} вышел(-ла) из очереди и сел(-а) за стол номер {table.number}\n')
+                        except Empty:
+                            break
+
 
 
 tables = [Table(number) for number in range(1, 6)]
