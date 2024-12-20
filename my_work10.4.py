@@ -1,3 +1,4 @@
+import sys
 from queue import Queue
 from queue import Empty
 import threading
@@ -18,8 +19,8 @@ class Guest(threading.Thread):
             time.sleep(i)
 
 class Cafe:
-    queue = Queue()
     def __init__(self, *tables):
+        self.queue = Queue()
         self.tables = tables
 
 
@@ -35,28 +36,31 @@ class Cafe:
                     ges_guest.start()
                     print(f'{guest.name} сел(-а) за стол номер {table.number}\n')
                     if guest.name in cafe:
-                        table.guest = Cafe.queue.get()
+                        table.guest = self.queue.get()
                 elif guest.name in cafe or guest.name in tab:
                     pass
                 else:
-                    Cafe.queue.put(guest.name)
+                    self.queue.put(guest.name)
                     cafe.append(guest.name)
                     print(f'{guest.name} в очереди\n')
 
 
     def discuss_guests(self):
-        while not Cafe.queue.empty():
-            for table in self.tables:
-                if not table.guest is None:
-                    if not Guest(Guest.name).is_alive():
-                        print(f'{table.guest} покушал(-а) и ушёл(ушла)\n')
-                        print(f'Стол номер {table.number} свободен\n')
-                        table.guest = None
-                        try:
-                            table.guest = Cafe.queue.get(timeout=10)
-                            print(f'{table.guest} вышел(-ла) из очереди и сел(-а) за стол номер {table.number}\n')
-                        except Empty:
-                            break
+        try:
+            while not self.queue.empty() or not Table(Table.guest) is None:
+                for table in self.tables:
+                    if not table.guest is None:
+                        if not Guest(Guest.name).is_alive():
+                            print(f'{table.guest} покушал(-а) и ушёл(ушла)\n')
+                            print(f'Стол номер {table.number} свободен\n')
+                            table.guest = None
+                            try:
+                                table.guest = self.queue.get(timeout=10)
+                                print(f'{table.guest} вышел(-ла) из очереди и сел(-а) за стол номер {table.number}\n')
+                            except Empty:
+                                break
+        except Exception:
+            sys.exit()
 
 
 
