@@ -46,8 +46,7 @@ class Cafe:
 
 
     def discuss_guests(self):
-        try:
-            while not self.queue.empty() or not Table(Table.guest) is None:
+            while not self.queue.empty() or any(table.guest is not None for table in self.tables):
                 for table in self.tables:
                     if not table.guest is None:
                         if not Guest(Guest.name).is_alive():
@@ -59,8 +58,6 @@ class Cafe:
                                 print(f'{table.guest} вышел(-ла) из очереди и сел(-а) за стол номер {table.number}\n')
                             except Empty:
                                 break
-        except Exception:
-            sys.exit()
 
 
 
