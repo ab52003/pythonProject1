@@ -32,7 +32,7 @@ class Cafe:
                 if table.guest is None and guest.name not in tab:
                     table.guest = guest.name
                     tab.append(guest.name)
-                    ges_guest = Guest(Guest.name)
+                    ges_guest = Guest(guest.name)
                     ges_guest.start()
                     print(f'{guest.name} сел(-а) за стол номер {table.number}\n')
                     if guest.name in cafe:
