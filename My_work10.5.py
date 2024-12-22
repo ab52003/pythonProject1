@@ -25,7 +25,7 @@ print(f'Работа функции {elapsed_time}')
 #start_time = time.perf_counter()
 #if __name__ == '__main__':
     #for name in filenames:
-        #process = multiprocessing.Process(target=read_info, args=(name))
+        #process = multiprocessing.Process(target=read_info, args=name)
         #process.start()
 #end_time = time.perf_counter()
 #elapsed_time = end_time - start_time
