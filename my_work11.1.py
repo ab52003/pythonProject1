@@ -5,6 +5,7 @@ import numpy as np
 r = requests.get('https://lenta.ru', auth=('user', 'pass'))
 print(r.status_code)
 print(r.headers['content-type'])
+print(r.url)
 
 data = pd.read_excel(r'C:\Users\ab520\Documents\GitHub\pythonProject1\Test1.xlsx')
 print(data)
