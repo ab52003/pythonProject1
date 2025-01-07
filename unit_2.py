@@ -16,7 +16,7 @@ class TournamentTest(unittest.TestCase):
     def tearDownClass():
         list = {}
         for key, value in TournamentTest.all_results.items():
-            list.update({str(key): str(value)})
+            list.update({key: str(value)})
         return list
 
     def test_run1(self):
